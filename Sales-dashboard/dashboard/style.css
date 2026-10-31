@@ -1,0 +1,108 @@
+/* ============================================================
+   style.css — Custom styles tambahan untuk Dashboard Penjualan
+   Tailwind CSS menangani sebagian besar styling; file ini
+   hanya untuk hal-hal yang tidak mudah dilakukan dengan Tailwind.
+   ============================================================ */
+
+/* ----- Scrollbar kustom (Webkit) ----- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ----- Animasi fade-in untuk halaman pertama kali dimuat ----- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* KPI card: efek masuk bertahap */
+.kpi-card {
+  animation: fadeInUp 0.4s ease both;
+}
+.kpi-card:nth-child(1) { animation-delay: 0.05s; }
+.kpi-card:nth-child(2) { animation-delay: 0.10s; }
+.kpi-card:nth-child(3) { animation-delay: 0.15s; }
+.kpi-card:nth-child(4) { animation-delay: 0.20s; }
+
+/* Chart card: efek masuk */
+.chart-card {
+  animation: fadeInUp 0.45s ease both;
+  animation-delay: 0.25s;
+}
+
+/* ----- Heading dalam chart card ----- */
+.chart-header {
+  margin-bottom: 1rem;
+}
+.chart-title {
+  font-size: 0.875rem;   /* text-sm */
+  font-weight: 600;       /* font-semibold */
+  color: #111827;         /* text-gray-900 */
+  line-height: 1.4;
+}
+.chart-subtitle {
+  font-size: 0.75rem;    /* text-xs */
+  color: #6b7280;         /* text-gray-500 */
+  margin-top: 2px;
+}
+
+/* ----- Canvas wrapper: pastikan canvas responsif di dalam container ----- */
+.chart-wrapper {
+  position: relative;
+  width: 100%;
+}
+.chart-wrapper canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ----- Filter select: styling tambahan (hover, appearance) ----- */
+.filter-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 0.9em;
+  padding-right: 2.25rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.filter-select:hover {
+  border-color: #3b82f6;
+}
+
+/* ----- Tooltip Chart.js: override gaya default ----- */
+/* (Chart.js v4 gunakan internal canvas tooltip; tidak perlu override DOM) */
+
+/* ----- Responsive chart pada layar sangat kecil ----- */
+@media (max-width: 480px) {
+  .chart-wrapper {
+    height: 200px !important;
+  }
+}
+
+/* ----- Number animation pada KPI (counter effect) ----- */
+.kpi-value-animating {
+  transition: opacity 0.2s ease;
+  opacity: 0.4;
+}
